@@ -54,5 +54,10 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  // 全局守衛
+  router: {
+    middleware: 'auth'
   }
 }

@@ -2,15 +2,49 @@
   <div class="index-wrapper">
     <div class="title">Welcome to <span class="white fade-in">Future</span><span class="green fade-in">Eat</span></div>
     <div class="btn-box">
-      <nuxt-link to="/order/getPower">
+      <div v-if="!isLogin" class="btn"><a :href="lineLoginUrl">點餐前請先登入</a></div>
+      <nuxt-link v-if="isLogin" to="/order/getPower">
         <div class="btn">前往點餐</div>
       </nuxt-link>
-      <div class="btn">
+      <div v-if="isLogin" class="btn">
         <a href="https://alex1234567639.github.io/foodpanda_calculator/" target="_blank">餐費計算機</a>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import { setUserInfo } from '~/api/line'
+
+export default {
+  head() {
+    return {
+      script: [{
+        src: 'https://code.jquery.com/jquery-3.3.1.js',
+        integrity: 'sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=',
+        crossorigin: 'anonymous'
+      }],
+    }
+  },
+  data() {
+    return {
+      lineLoginUrl: 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1656806827&redirect_uri=http://192.168.0.227:8081&state=12345abcde&scope=profile%20openid&nonce=09876xyz',
+      isLogin: false,
+      code: ''
+    }
+  },
+  mounted() {
+    // 登入後記錄網址上的code參數
+    const url = new URL(location.href)
+    this.code = url.searchParams.get('code')
+    if (this.code) {
+      setUserInfo(this.code)
+    }
+    // 檢查是否已登入
+    this.isLogin = !!sessionStorage.getItem('user_id')
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .index-wrapper {

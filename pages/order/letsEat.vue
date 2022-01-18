@@ -89,7 +89,8 @@ export default {
             name: this.inputName,
             order: total_name,
             price: total_price,
-            note: this.inputNote
+            note: this.inputNote,
+            user_id: sessionStorage.getItem('user_id')
           },
           success: function(response) {
             vm.inputName = ''

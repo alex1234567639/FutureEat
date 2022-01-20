@@ -18,11 +18,16 @@
       </div>
     </div>
     <img class="menu" src="@/assets/getPower/menu.jpg" alt="">
+
+    <Loading v-if="isOrdering" />
   </div>
 </template>
 
 <script>
+import Loading from '~/components/loading'
+
 export default {
+  components: { Loading },
   middleware: 'routePath',
   head() {
     return {
@@ -50,7 +55,8 @@ export default {
         { id: 8, name: '厚切烤鮭魚', price: 220, amount: 0 }
       ],
       menuCopy: [],
-      orderList: []
+      orderList: [],
+      isOrdering: false
     }
   },
   methods: {
@@ -72,6 +78,7 @@ export default {
       } else if (this.orderList.length === 0) {
         alert('請選擇餐點')
       } else {
+        this.isOrdering = true
         let total_name = ''
         let total_price = 0
         for (let i = 0; i < this.orderList.length; i++) {
@@ -98,6 +105,7 @@ export default {
             vm.inputNote = ''
             vm.menuCopy = vm.menu
             vm.orderList = []
+            vm.isOrdering = false
             if (response === 'success') {
               alert('成功送單')
             }

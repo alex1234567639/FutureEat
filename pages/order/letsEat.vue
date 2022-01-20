@@ -22,7 +22,10 @@
 </template>
 
 <script>
+import Loading from '~/components/loading'
+
 export default {
+  components: { Loading },
   middleware: 'routePath',
   head() {
     return {
@@ -49,7 +52,8 @@ export default {
         { id: 7, name: '活力蔬食', price: 100, amount: 0 }
       ],
       menuCopy: [],
-      orderList: []
+      orderList: [],
+      isOrdering: false
     }
   },
   methods: {
@@ -97,6 +101,7 @@ export default {
             vm.inputNote = ''
             vm.menuCopy = vm.menu
             vm.orderList = []
+            vm.isOrdering = false
             if (response === 'success') {
               alert('成功送單')
             }

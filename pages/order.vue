@@ -45,6 +45,11 @@ export default {
     const getUrlString = location.href
     const url = new URL(getUrlString)
     this.currentTab = url.pathname
+    // 檢查user登入狀態
+    const user_id = sessionStorage.getItem('user_id')
+    if (!user_id) {
+      this.$router.push('/')
+    }
   }
 }
 </script>

@@ -28,7 +28,7 @@ export default {
   },
   data() {
     return {
-      lineLoginUrl: 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1656806827&redirect_uri=http://192.168.0.227:8081&state=12345abcde&scope=profile%20openid&nonce=09876xyz',
+      lineLoginUrl: 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1656806827&redirect_uri=http://192.168.2.174:8081&state=12345abcde&scope=profile%20openid&nonce=09876xyz',
       isLogin: false,
       code: ''
     }

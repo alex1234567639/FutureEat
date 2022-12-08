@@ -12,7 +12,9 @@ export function setUserInfo(code) {
     data: {
       grant_type: 'authorization_code',
       code: code,
-      redirect_uri: 'http://192.168.2.174:8081',
+      // redirect_uri: 'http://192.168.1.85:8081',
+      redirect_uri: 'http://175.97.177.18:8081',
+      // redirect_uri: 'https://foxinshop.com',
       client_id: '1656806827',
       client_secret: '3648e376686ce8b7f94c4ab611515233'
     },
